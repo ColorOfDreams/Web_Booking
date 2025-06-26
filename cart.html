@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Giỏ hàng - Travel Booking</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" type="text/css" href="cart.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="bg-gray-50">
+	<!-- Navigation -->
+	<nav class="bg-white shadow-sm border-b">
+		<div class="max-w-7xl mx-auto px-4">
+			<div class="flex justify-between items-center h-16">
+				<div class="flex items-center">
+					<a class="font-bebas font-black text-2xl sm:text-3xl uppercase dark:hover:text-sky-400 transition-colors duration-300 ease-in-out"
+						href="index.html">Esports</a>
+				</div>
+				<div class="hidden md:flex items-center space-x-8">
+					<a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+						href="#">About</a>
+					<a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+						href="#">Event</a>
+					<a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+						href="cart.html">Cart</a>
+					<a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+						href="#">Login</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Main Content -->
+	<div class="max-w-7xl mx-auto px-4 py-6">
+		<!-- Breadcrumb -->
+		<div class="flex items-center space-x-2 text-sm text-gray-600 mb-6">
+			<a href="index.html" class="hover:text-orange-500">Trang chủ</a>
+			<i class="fas fa-chevron-right text-xs"></i>
+			<span class="text-orange-500">Giỏ hàng</span>
+		</div>
+
+		<!-- Page Title -->
+		<h1 class="text-2xl font-bold text-gray-800 mb-6">
+			<i class="fas fa-shopping-cart text-orange-500 mr-2"></i>
+			Giỏ hàng
+		</h1>
+
+		<!-- Cart Content -->
+		<div class="bg-white rounded-lg shadow-sm">
+			<!-- Empty Cart -->
+			<div class="cart-empty text-center py-16" id="cart-empty">
+				<div class="mb-4">
+					<i class="fas fa-shopping-cart text-gray-300 text-6xl mb-4"></i>
+					<h3 class="text-xl font-medium text-gray-600 mb-2">Giỏ hàng trống</h3>
+					<p class="text-gray-500 mb-6">Hãy chọn thêm sản phẩm để mua sắm nhé</p>
+					<a href="index.html"
+						class="inline-block bg-orange-500 text-white px-8 py-3 rounded-md hover:bg-orange-600 transition-colors">
+						Mua ngay
+					</a>
+				</div>
+			</div>
+
+			<!-- Cart Table -->
+			<div class="cart-table-container hidden" id="cart-table-container">
+				<!-- Header -->
+				<div class="bg-white border-b">
+					<div class="grid grid-cols-12 gap-4 p-4 text-sm font-medium text-gray-700">
+						<div class="col-span-1">
+							<input type="checkbox" id="select-all" class="rounded">
+						</div>
+						<div class="col-span-5">Sản phẩm</div>
+						<div class="col-span-2 text-center">Đơn giá</div>
+						<div class="col-span-2 text-center">Số lượng</div>
+						<div class="col-span-1 text-center">Số tiền</div>
+						<div class="col-span-1 text-center">Thao tác</div>
+					</div>
+				</div>
+
+				<!-- Cart Items -->
+				<div id="cart-items-body">
+					<!-- Items will be populated by JavaScript -->
+				</div>
+			</div>
+		</div>
+
+		<!-- Cart Summary -->
+		<div class="cart-summary mt-6 hidden" id="cart-summary">
+			<div class="bg-white rounded-lg shadow-sm p-6">
+				<div class="flex justify-between items-center">
+					<div class="flex items-center space-x-4">
+						<input type="checkbox" id="select-all-bottom" class="rounded">
+						<label for="select-all-bottom" class="text-sm">Chọn tất cả</label>
+						<button class="text-sm text-blue-600 hover:text-blue-800" id="delete-selected">Xóa</button>
+					</div>
+					<div class="flex items-center space-x-6">
+						<div class="text-sm">
+							Tổng thanh toán (<span id="selected-count">0</span> sản phẩm):
+							<span class="text-2xl font-bold text-orange-500" id="total-amount">₫0</span>
+						</div>
+						<button
+							class="bg-orange-500 text-white px-8 py-3 rounded-md hover:bg-orange-600 transition-colors font-medium"
+							id="checkout-btn">
+							Mua hàng
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Checkout Modal -->
+	<div class="checkout-modal hidden fixed inset-0 bg-black bg-opacity-50 z-50" id="checkout-modal">
+		<div class="modal-content bg-white rounded-lg max-w-md mx-auto mt-20 p-6">
+			<div class="flex justify-between items-center mb-4">
+				<h2 class="text-2xl font-bold">Thông tin thanh toán</h2>
+				<span class="close-modal text-2xl cursor-pointer hover:text-red-600">&times;</span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label for="checkout-name" class="block mb-2 font-medium">Họ và tên</label>
+				<input type="text" id="checkout-name" class="w-full p-3 border rounded-lg" placeholder="Nhập họ và tên">
+			</div>
+
+			<div class="form-group mb-4">
+				<label for="checkout-phone" class="block mb-2 font-medium">Số điện thoại</label>
+				<input type="tel" id="checkout-phone" class="w-full p-3 border rounded-lg"
+					placeholder="Nhập số điện thoại">
+			</div>
+
+			<div class="form-group mb-4">
+				<label for="checkout-email" class="block mb-2 font-medium">Email</label>
+				<input type="email" id="checkout-email" class="w-full p-3 border rounded-lg" placeholder="Nhập email">
+			</div>
+
+			<div class="form-group mb-4">
+				<label class="block mb-2 font-medium">Phương thức thanh toán</label>
+				<div class="payment-options">
+					<div class="payment-option mb-2">
+						<input type="radio" id="modal-card" name="modal-payment" value="CreditCard" checked>
+						<label for="modal-card" class="ml-2">Thẻ tín dụng</label>
+					</div>
+					<div class="payment-option mb-2">
+						<input type="radio" id="modal-paypal" name="modal-payment" value="PayPal">
+						<label for="modal-paypal" class="ml-2">PayPal</label>
+					</div>
+					<div class="payment-option mb-2">
+						<input type="radio" id="modal-bank" name="modal-payment" value="BankTransfer">
+						<label for="modal-bank" class="ml-2">Chuyển khoản ngân hàng</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="order-summary bg-gray-50 p-4 rounded-lg mb-4">
+				<h3 class="font-bold mb-2">Tóm tắt đơn hàng</h3>
+				<div class="summary-item flex justify-between mb-1">
+					<span>Tạm tính:</span>
+					<span id="modal-subtotal">₫0</span>
+				</div>
+				<div class="summary-item flex justify-between mb-1">
+					<span>Thuế:</span>
+					<span id="modal-tax">₫0</span>
+				</div>
+				<div class="summary-item total flex justify-between font-bold border-t pt-2">
+					<span>Tổng cộng:</span>
+					<span id="modal-total">₫0</span>
+				</div>
+			</div>
+
+			<button class="btn confirm-checkout w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700"
+				id="confirm-checkout">Xác nhận đặt hàng</button>
+		</div>
+	</div>
+
+	<script src="data.js"></script>
+	<script src="cart-shopee.js"></script>
+</body>
+
+</html>

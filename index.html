@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ticket Landing Page</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap"
+    rel="stylesheet" />
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-dG1lOKR9X9x1sXBmwjRvYqTYQO5+VrNn9g4QbxUuw0qFrP2rVUVz+w4OET6TSh1Wj5eMHlzI/OAHUOU38ebYrQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Các style hiện tại của bạn */
+    .slider {
+      margin: 0 -20px;
+    }
+
+    .slider .slick-slide {
+      margin: 0 20px;
+    }
+
+    /* Responsive Adjustments for Navigation and Layout */
+    @media (max-width: 1024px) {
+      #Desktop {
+        display: none !important;
+      }
+
+      #Mobie {
+        display: flex !important;
+        justify-content: center;
+        /* Căn giữa menu mobile */
+        width: 100%;
+        /* Đảm bảo chiếm toàn bộ chiều rộng */
+      }
+
+      .mobile-menu {
+        top: 4rem;
+        left: 0;
+        /* Bắt đầu từ cạnh trái */
+        right: 0;
+        /* Kéo đến cạnh phải */
+        margin: 0 auto;
+        /* Căn giữa theo chiều ngang */
+        width: 90%;
+        /* Giới hạn chiều rộng để không quá chật */
+        background-color: #f9fafb;
+        /* Đảm bảo background rõ ràng */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        /* Thêm bóng để nổi bật */
+        z-index: 50;
+        text-align: center;
+        /* Căn giữa các mục trong menu */
+      }
+
+      .mobile-menu a {
+        display: block;
+        /* Đảm bảo mỗi liên kết chiếm một dòng */
+        padding: 0.75rem 0;
+        /* Thêm padding cho dễ đọc */
+      }
+
+      .slider .w-\[400px\] {
+        width: 100 !important;
+        max-width: 300px !important;
+      }
+
+      .w-3\/ {
+        width: 100 !important;
+      }
+
+      .absolute.-right-\[100px\] {
+        right: -50px !important;
+        width: 150px !important;
+        height: 150px !important;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      #Mobie {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .flex-auto {
+        flex-direction: column !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .w-1\/3,
+      .w-2\/3 {
+        width: 100 !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+      }
+
+      .mt-24 {
+        margin-top: 2rem !important;
+      }
+
+      h1.text-4xl {
+        font-size: 2rem !important;
+        line-height: 2.5rem !important;
+      }
+
+      .inline-block.w-48 {
+        width: 100 !important;
+        margin-bottom: 1rem !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="root" class="box-border min-h-screen p-4 sm:p-8">
+    <div>
+      <section class="relative bg-gray-50">
+        <div class="flex flex-col lg:flex-row w-full bg-gray-50 justify-between 
+              px-4 sm:px-8 mx-auto lg:-mx-4 lg:px-0 lg:mx-0">
+
+          <!-- Left Content -->
+          <div class="w-full lg:w-1/3 pt-8 pb-8 px-4 sm:px-8">
+            <header>
+              <!-- Desktop Nav -->
+              <nav class="hidden lg:flex items-center justify-between">
+                <a class="font-bebas font-black text-2xl sm:text-3xl uppercase dark:hover:text-sky-400 transition-colors duration-300 ease-in-out"
+                  href="#">Esports</a>
+                <div class="flex items-center text-base font-medium space-x-4 sm:space-x-6 lg:space-x-7">
+                  <a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+                    href="#">About</a>
+                  <a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+                    href="#">Event</a>
+                  <a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+                    href="cart.html">Cart</a>
+                  <a class="border-b-2 border-transparent hover:border-blue-500 dark:hover:border-sky-400 transition-all duration-300"
+                    href="#">Login</a>
+                </div>
+              </nav>
+
+              <!-- Mobile Nav -->
+              <nav class="flex lg:hidden justify-between items-center">
+                <a class="font-bebas font-black text-2xl uppercase" href="#">Esports</a>
+                <button id="mobile-toggle" class="p-2 focus:outline-none">
+                  <i class="fas fa-bars text-2xl text-gray-900"></i>
+                </button>
+              </nav>
+
+              <!-- Mobile Menu -->
+              <div id="mobile-menu" class="hidden flex-col bg-gray-50 shadow-lg p-4 z-50 mt-4 rounded">
+                <a href="#" class="py-2 text-gray-900 hover:text-blue-600 text-base">About</a>
+                <a href="#" class="py-2 text-gray-900 hover:text-blue-600 text-base">Event</a>
+                <a href="cart.html" class="py-2 text-gray-900 hover:text-blue-600 text-base">Cart</a>
+                <a href="#" class="py-2 text-gray-900 hover:text-blue-600 text-base">Login</a>
+              </div>
+            </header>
+
+            <!-- Hero Content -->
+            <div
+              class="mt-8 sm:mt-16 lg:mt-24 mb-8 sm:mb-16 flex flex-col items-center lg:items-start text-center lg:text-left">
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-gray-900">
+                Find Perfect Hotels <br />
+                <span class="text-blue-600 dark:text-sky-400">anywhere you go.</span>
+              </h1>
+              <p class="mt-4 sm:mt-8 mb-4 sm:mb-8 text-gray-700 text-base sm:text-lg">
+                We've been in the hotels business across the world for 5 years now. We assure you that you will always
+                enjoy your stay with us.
+              </p>
+              <div
+                class="mt-4 sm:mt-8 flex flex-col sm:flex-row items-center sm:items-start space-y-4 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                <a href="#"
+                  class="inline-block w-full sm:w-48 pt-4 pb-4 bg-blue-600 dark:bg-sky-400 hover:bg-blue-700 dark:hover:bg-sky-500 text-white font-semibold text-center rounded transition-all duration-300">
+                  Sign Up
+                </a>
+                <a href="#"
+                  class="inline-block w-full sm:w-48 pt-4 pb-4 bg-gray-200 hover:bg-gray-300 text-gray-800 hover:text-black text-center font-semibold rounded transition-all duration-300">
+                  Search Hotels
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Image (tràn viền ở mobile) -->
+          <div class="w-full lg:w-2/3 -mx-4 sm:-mx-8 mt-0 mb-0 lg:mx-0 lg:-mt-8 lg:-mr-12">
+            <img src="./Canada.png" alt="Canada" class="w-full h-auto object-cover" />
+          </div>
+        </div>
+      </section>
+
+    </div>
+    <div>
+      <section class="relative py-12 sm:py-24 bg-white">
+        <img src="./sgv/blog.svg" alt="Background blob"
+          class="absolute -left-[200px] sm:-left-[360px] top-[60px] sm:top-[120px] w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] opacity-30 pointer-events-none z-0" />
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between text-center services-container">
+            <!-- Services will be rendered here by JavaScript -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <div>
+      <section class="py-12 sm:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col sm:flex-row items-center justify-between">
+            <h2 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4 sm:mb-0">Popular Hotels</h2>
+            <div class="flex space-x-4">
+              <button
+                class="custom-prev w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 dark:bg-sky-500 text-white hover:bg-blue-700 dark:hover:bg-sky-600 hover:shadow-lg transition-all duration-300">
+                <img src="./sgv/left.svg" alt="Previous" class="w-4 h-4" />
+              </button>
+              <button
+                class="custom-next w-10 h-10 flex items-center justify-center rounded-full bg-blue-600 dark:bg-sky-500 text-white hover:bg-blue-700 dark:hover:bg-sky-600 hover:shadow-lg transition-all duration-300">
+                <img src="./sgv/right.svg" alt="Next" class="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+          <div class="mt-8 sm:mt-14">
+            <div class="slider">
+              <!-- Hotels will be rendered here by JavaScript -->
+            </div>
+          </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="relative py-12 sm:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-start">
+            <div class="w-full md:w-1/3 mb-8 md:mb-0">
+              <h2 class="text-3xl sm:text-5xl font-black text-gray-800">Trending Tours</h2>
+              <p class="text-gray-400 mt-4 sm:mt-8 mb-4 sm:mb-8 text-base sm:text-xl font-semibold">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua enim ad minim veniam.
+              </p>
+              <a href="#"
+                class="text-base sm:text-xl text-blue-600 dark:text-sky-400 font-medium hover:text-blue-800 dark:hover:text-sky-500 hover:underline transition-colors duration-300">
+                View All Tours →
+              </a>
+            </div>
+            <div class="w-full md:w-2/3 flex flex-col md:flex-row justify-between tours-container">
+              <!-- Tours will be rendered here by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="relative overflow-hidden py-12 sm:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-start">
+            <div class="w-full md:w-2/5 mb-8 md:mb-0">
+              <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Hotel"
+                class="w-full h-auto rounded-lg object-cover" />
+            </div>
+            <div class="w-full md:w-3/5 px-0 md:pl-8">
+              <h2 class="text-3xl sm:text-5xl md:text-6xl font-black text-gray-800">We have the best service.</h2>
+              <p class="text-gray-400 font-semibold text-base sm:text-lg mt-4">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-8 sm:mt-16 stats-container">
+                <!-- Stats will be rendered here by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <section class="py-12 sm:py-24 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col md:flex-row justify-between items-start">
+            <div class="w-full md:w-2/5 mb-8 md:mb-0">
+              <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Hotel"
+                class="w-full h-auto rounded-lg object-cover" />
+            </div>
+            <div class="w-full md:w-3/5 px-0 md:pl-8">
+              <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-gray-800 mb-6 sm:mb-8">Questions</h2>
+              <p class="text-gray-600 mb-8 sm:mb-12 text-base sm:text-xl">
+                Here are some frequently asked questions about our hotels from our loving customers. Should you have
+                any other questions, feel free to reach out via the contact form below.
+              </p>
+              <ul class="space-y-4" id="faq-list">
+                <!-- FAQ will be rendered here by JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div>
+      <div class="-ml-8 -mr-8 bg-[rgb(25_43_69)] text-white py-12 sm:py-24">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
+            <div>
+              <h3 class="text-xl sm:text-2xl font-bold">Newsletter</h3>
+              <p class="text-sm text-gray-400">Subscribe now to get our latest blog posts.</p>
+            </div>
+            <form class="w-full sm:w-auto">
+              <div class="flex flex-col sm:flex-row">
+                <input
+                  class="w-full sm:w-auto pt-4 pb-4 px-6 text-gray-800 bg-[rgb(50_70_105)] rounded-l-sm focus:outline-none mb-4 sm:mb-0"
+                  type="email" placeholder="Your Email Address">
+                <button
+                  class="bg-green-500 text-white pt-4 pb-4 px-6 sm:px-8 rounded-r-sm hover:bg-green-600 transition-colors duration-300">
+                  Subscribe Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <footer class="-mb-8 -ml-8 -mr-8 bg-gray-900 text-white py-12">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex flex-col items-center space-y-6">
+            <div class="flex flex-wrap justify-center text-base sm:text-lg font-medium gap-4 sm:gap-6">
+              <a href="#" class="hover:text-gray-300 px-2 py-1">Home</a>
+              <a href="#" class="hover:text-gray-300 px-2 py-1">About</a>
+              <a href="#" class="hover:text-gray-300 px-2 py-1">Contact Us</a>
+              <a href="#" class="hover:text-gray-300 px-2 py-1">Blog</a>
+              <a href="#" class="hover:text-gray-300 px-2 py-1">Review</a>
+            </div>
+            <div class="flex space-x-6 text-lg sm:text-xl">
+              <a href="#" class="text-blue-500 hover:text-blue-700">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="text-gray-400 hover:text-gray-200">
+                <i class="fab fa-x-twitter"></i>
+              </a>
+              <a href="#" class="text-red-500 hover:text-red-700">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-teal-600 bg-white rounded-lg shadow-lg w-[90%] max-w-md p-6 relative">
+      <!-- Close Button -->
+      <button onclick="closeModal()"
+        class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl font-bold">✕</button>
+
+      <!-- Header -->
+      <div class="flex items-center justify-center mb-6 border-b pb-4">
+        <i class="fas fa-ticket-alt text-teal-600 text-2xl mr-2"></i>
+        <h2 class="text-2xl font-bold text-gray-800">Tickets</h2>
+      </div>
+
+      <!-- Form -->
+      <form class="space-y-4">
+        <div>
+          <label for="email" class="block text-gray-700 font-semibold mb-1">Email</label>
+          <input type="email" id="email" required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Enter email...">
+        </div>
+        <div>
+          <label for="phone" class="block text-gray-700 font-semibold mb-1">Phone Number</label>
+          <input type="tel" id="phone" required
+            class="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"
+            placeholder="Enter phone...">
+        </div>
+        <button type="submit"
+          class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded transition-all duration-300">
+          PAY ✓
+        </button>
+      </form>
+
+      <p class="text-sm text-right text-gray-500 mt-4">
+        Need <a href="#" class="text-blue-600 hover:underline">help?</a>
+      </p>
+    </div>
+  </div>
+
+
+  <script src="data.js"></script>
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

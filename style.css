@@ -1,0 +1,270 @@
+@media (min-width: 769px) {
+    #Mobie {
+        display: none !important;
+        /* Ẩn menu mobile trên desktop */
+    }
+}
+
+
+.slider {
+    margin: 0 -20px;
+}
+
+.slider .slick-slide {
+    margin: 0 20px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+
+    /* Header: Navigation */
+    #Desktop {
+        display: none;
+        /* Ẩn menu desktop trên mobile */
+    }
+
+    #Mobie {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Hero Section */
+    .flex-auto {
+        flex-direction: column !important;
+        /* Xếp chồng trên mobile */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .w-1\/3,
+    .w-2\/3 {
+        width: 100% !important;
+        /* Full width trên mobile */
+        margin: 0 !important;
+        padding: 1rem !important;
+    }
+
+    .mt-24 {
+        margin-top: 2rem !important;
+        /* Giảm margin trên mobile */
+    }
+
+    h1.text-4xl {
+        font-size: 2rem !important;
+        /* Giảm kích thước chữ */
+        line-height: 2.5rem !important;
+    }
+
+    .inline-block.w-48 {
+        width: 100% !important;
+        /* Full width buttons */
+        margin-bottom: 1rem !important;
+    }
+
+    /* Features Section */
+    .md\:flex-row {
+        flex-direction: column !important;
+        /* Xếp chồng trên mobile */
+    }
+
+    .flex-1 {
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    /* Popular Hotels Slider */
+    .slider {
+        margin: 0 -10px !important;
+    }
+
+    .slider .w-\[400px\] {
+        width: 100% !important;
+        /* Full width cho thẻ hotel */
+        max-width: 300px !important;
+        /* Giới hạn tối đa */
+    }
+
+    .h-60 {
+        height: 12rem !important;
+        /* Giảm chiều cao hình ảnh */
+    }
+
+    h5.text-2xl {
+        font-size: 1.25rem !important;
+        /* Giảm kích thước chữ */
+    }
+
+    /* Trending Tours */
+    .w-1\/3,
+    .w-2\/3 {
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+
+    .ml-16 {
+        margin-left: 0 !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .h-48 {
+        height: 10rem !important;
+        /* Giảm chiều cao hình ảnh */
+    }
+
+    /* Best Service & Questions */
+    .w-2\/5,
+    .w-3\/5,
+    .w-3\/ {
+        width: 100% !important;
+        padding-left: 0 !important;
+    }
+
+    h2.text-6xl {
+        font-size: 2.5rem !important;
+        /* Giảm kích thước chữ */
+    }
+
+    .grid-cols-2 {
+        grid-template-columns: 1fr !important;
+        /* 1 cột trên mobile */
+    }
+
+    /* Newsletter */
+    .flex.gap-8 {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .flex.space-x-4 {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    input.pt-4 {
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* Footer */
+    .flex-wrap.space-x-6 {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 1rem !important;
+    }
+
+    .text-xl {
+        font-size: 1rem !important;
+        /* Giảm kích thước icon */
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+    /* Tablet adjustments */
+    .w-1\/3,
+    .w-2\/3 {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+    }
+
+    .ml-24 {
+        margin-left: 0 !important;
+    }
+
+    .slider .w-\[400px\] {
+        width: 300px !important;
+    }
+
+    .ml-16 {
+        margin-left: 1rem !important;
+    }
+}
+
+/* Hotel Card Button Styles */
+.btn-booknow {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-booknow:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-booknow:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hotel Card Enhancements */
+.hotel-card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+    .hotel-card-buttons {
+        flex-direction: row;
+        gap: 0.75rem;
+    }
+
+    .hotel-card-buttons button {
+        flex: 1;
+    }
+}
+
+/* Hotel Card Hover Effects */
+.hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.hotel-card {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent card hover when hovering over button */
+.hotel-card .btn-booknow:hover {
+    z-index: 10;
+}
+
+/* Cart Badge Animation */
+.cart-badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Success Message Animation */
+.success-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #10b981;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.success-toast.show {
+    transform: translateX(0);
+}
